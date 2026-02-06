@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crucigrama por letras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            max-width: 500px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .pista {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 50px;
+            padding: 8px;
+            font-size: 18px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .resultado {
+            margin-top: 30px;
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🧩 Crucigrama por letras 🧩</h1>
+
+<div class="pista">1. Primera letra del abecedario <input id="l1" maxlength="1"></div>
+<div class="pista">2. Letra con la que empieza “Isla” <input id="l2" maxlength="1"></div>
+<div class="pista">3. Letra que suena igual en “casa” y “cena” <input id="l3" maxlength="1"></div>
+<div class="pista">4. Vocal que está en “sol” <input id="l4" maxlength="1"></div>
+<div class="pista">5. Letra final de “animal” <input id="l5" maxlength="1"></div>
+<div class="pista">6. Primera letra de “amor” <input id="l6" maxlength="1"></div>
+<div class="pista">7. Letra con la que termina “mes” <input id="l7" maxlength="1"></div>
+
+<button onclick="verificar()">Verificar</button>
+
+<div class="resultado" id="resultado">
+    🎉 El nombre oculto es: NICOLAS
+</div>
+
+<script>
+    function verificar() {
+        const letras = [
+            document.getElementById("l1").value.toUpperCase(),
+            document.getElementById("l2").value.toUpperCase(),
+            document.getElementById("l3").value.toUpperCase(),
+            document.getElementById("l4").value.toUpperCase(),
+            document.getElementById("l5").value.toUpperCase(),
+            document.getElementById("l6").value.toUpperCase(),
+            document.getElementById("l7").value.toUpperCase()
+        ];
+
+        const correcta = ["N","I","C","O","L","A","S"];
+
+        if (JSON.stringify(letras) === JSON.stringify(correcta)) {
+            document.getElementById("resultado").style.display = "block";
+        } else {
+            alert("❌ Alguna letra es incorrecta. El crucigrama se reiniciará.");
+
+            document.querySelectorAll("input").forEach(i => i.value = "");
+            document.getElementById("resultado").style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>
